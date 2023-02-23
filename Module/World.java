@@ -15,7 +15,6 @@ public class World {
     private final List<HasTrailer> trucks;
     private final List<Observer> observers;
     private final Timer timer;
-
     public final int TILTAMOUNT = 10;
     private final int width, height;
 

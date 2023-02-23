@@ -5,11 +5,13 @@ import java.awt.*;
 import Module.DoublePoint;
 public class Scania extends AbstractVehicle implements HasTrailer {
     private double trailerTilt;
+    private TrailerState state;
 
     /** constructor for Scania */   /** Constructor */
     Scania(DoublePoint point){
         super(100, "Scania", Color.white, point, 2);
         trailerTilt = 0;
+        state = new DownState();
     }
 
     /** Increases the trailer tilt by a chosen amount of degrees */     /** Increases the trailer tilt a given amount of degrees */
@@ -20,6 +22,9 @@ public class Scania extends AbstractVehicle implements HasTrailer {
                return;
            }
            trailerTilt += deg;
+       }
+       if (deg > 0) {
+           state = new UpState();
        }
     }
 
@@ -32,6 +37,9 @@ public class Scania extends AbstractVehicle implements HasTrailer {
             }
             trailerTilt -= deg;
         }
+        if (trailerTilt == 0) {
+            state = new DownState();
+        }
     }
 
     /** Returns the current trailer tilt */     /** returns the current trailer tilt */
@@ -40,13 +48,10 @@ public class Scania extends AbstractVehicle implements HasTrailer {
     }
 
     private boolean canDrive() {
-        if (trailerTilt > 0) {
-            return false;
-        }
-        return true;
+        return trailerTilt == 0;
     }
     public void gas(double amount){
-        if (canDrive()){
+        if (canDrive()) {
             super.gas(amount);
         }
     }
@@ -55,4 +60,17 @@ public class Scania extends AbstractVehicle implements HasTrailer {
             super.startEngine();
         }
     }
+    class UpState implements TrailerState{
+        public void gas(double amount){
+
+        }
+    }
+
+    class DownState implements TrailerState {
+        public void gas(double amount){
+
+        }
+    }
 }
+
+

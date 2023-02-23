@@ -18,6 +18,7 @@ public class Application {
         world.add(VehicleFactory.createNewSaab(0,100));
         world.add(VehicleFactory.createNewScania(0,200));
 
+
         ControlPanel control = new ControlPanel(X, world);
         CarView view = new CarView(X, carViewHeight, world);
 
