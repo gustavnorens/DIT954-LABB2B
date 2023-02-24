@@ -51,9 +51,7 @@ public class Scania extends AbstractVehicle implements HasTrailer {
         return trailerTilt == 0;
     }
     public void gas(double amount){
-        if (canDrive()) {
-            super.gas(amount);
-        }
+        state.gas(amount);
     }
     public void startEngine(){
         if (canDrive()){
@@ -68,7 +66,7 @@ public class Scania extends AbstractVehicle implements HasTrailer {
 
     class DownState implements TrailerState {
         public void gas(double amount){
-
+            Scania.super.gas(amount);
         }
     }
 }
