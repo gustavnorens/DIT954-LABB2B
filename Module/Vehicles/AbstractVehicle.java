@@ -146,17 +146,14 @@ public abstract class AbstractVehicle implements Drivable {
 
     // TODO fix this method according to lab pm
     /** gives gas to the car */
-    public void gasProxy(double amount){
+
+    public void gas(double amount) {
         if (amount > 1) {
             incrementSpeed(1);
         }
         else if (amount > 0 && amount <= 1) {
             incrementSpeed(amount);
         }
-    }
-
-    public void gas(double amount) {
-        gasProxy(amount);
     }
 
     // TODO fix this method according to lab pm
